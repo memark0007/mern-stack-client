@@ -63,7 +63,7 @@ const EditComponent = () => {
                     onChange={inputValue("author")} />
             </div>
             <br />
-            <input type="submit" value="อัพเดต" classname="btn btn-primary" />
+            <input type="submit" value="อัพเดต" className="btn btn-primary" />
         </form>
     )
 
