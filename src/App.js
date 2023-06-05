@@ -6,16 +6,19 @@ import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { Parser } from 'html-to-react'
 import { getUser, getToken } from './services/authorize';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 function App() {
   const [blogs, setBlogs] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const fetchData = () => {
     axios
       .get(process.env.REACT_APP_API + "/blogs")
       .then(response => {
         setBlogs(response.data)
+        setLoading(false)
       })
       .catch(err => alert(err))
   }
@@ -58,6 +61,11 @@ function App() {
 
     <div className="container p-5">
       <NavbarComponent />
+      <ClipLoader
+        loading={loading}
+        size={150}
+        color='red'
+      />
       {blogs.map((blog, index) => (
         <div className='row' key={index} style={{ borderBottom: '1px solid silver' }}>
           <div className='col pt-3 pb-2'>
